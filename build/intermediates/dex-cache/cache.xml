@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\67c1b3747cf1370ef3ef4ef518964405b9983e22\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="b102f892442929c3457de1ef6a94f5dda3dd8864">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_7e93c9267677fe053e6f616a0550ff43125b6a7e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\33a378bbea767276a6dec85aed7c69862002381d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="df733e6865d662899ec247e8c3dbff3e0961b8a7">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_568946df035af964071c3f2220b3d150ff911729\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\26909f60a686eb015df23b5ea2033fb27f16f2df\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="f5ff5e3811e8c9485fd27f9052ae4d4d23a22d9d">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_1c6d11b2e6e1be7b1263b5eb86a769298c49ac56\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.gradle\caches\modules-2\files-2.1\com.android.support.constraint\constraint-layout-solver\1.1.0-beta1\4205dd8c33ada1468ab377afff0be95304ef72a\constraint-layout-solver-1.1.0-beta1.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="04205dd8c33ada1468ab377afff0be95304ef72a">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\constraint-layout-solver-1.1.0-beta1_8dbd377a7692835faa45fd6efd46f4acce9a4645\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\21626e78cf128f2502bdbfd5637c1be595cc2031\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="dd2e7a567260ca4e40c09ba330f4f2d318660554">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_08af08bb7969371def64e3b0f2caa53911f9d6d4\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\af22a898a4cfd4d0052a695dcb5837d5664fcd37\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="8f34896233f3fe6ecb75025e06b33980cee8239a">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_23aeeaa473cd6c03b81acf7db971286bb2b52287\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\29355950476149a6debd574cd1ad820afcb85720\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="0bffdc0bd4f7ca0e27c5bfeef39569f8da00aa26">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_124b9dd29315f8d642c5e057b98c4d3e6a5d9333\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\3c760f48ce1dbca7d69bc4eb4724c7547fadc961\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="ed18fdd695456683717079e695c5683cdc042d89">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_628f90dfb520410e6f43a8594d9e01e79e476824\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\eb17b5e3e4c470c4a216df0286a94e6598f1ed61\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d7c42c80f6509b9ea4db28ca7859ffae08ec5741">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_f155becb9ab1277b680c81e884c06b7445757253\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\52b377b601202136d485e8267a6bf7d9fc8cabcb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="db0171d21d064bab7ad72685f3c7df40544b03a8">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_afdb23618e3ec8d6c6ecbb8fef2298b93c084797\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\99c95acf44d4da3d1e08bdc44e2f6a00cbe72b58\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="684feeeb5dfd681b5babbf3c7ea436e2a1b8cdbc">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_eb1bbe482978d7ea145fac501036bcc4a37362d7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\b0ae875847e8cd8b455d454c4bb60bfe5f55befb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="bd47a98a8f3d53220afca6f869f37c56c273c8d9">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e23b5a9791917e46e0aa2149f816cbe0330d2c97\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\dd8141407f9ef381264c22a0acaffa1908c23ffd\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2c2cd79d00270c879baa7dddcdada0ade66d1ce4">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_271179c1af8ce0c43da80dd4255eb4e2061ecfcc\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\827f7383065520b2bbd1dd4ca0ca2e62ee261725\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="4c0c3a9709adc7608860b0a9f65f661cd3ff4d07">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_d44bf9e685caaa0d67aab1607cfa102f5fe58d13\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\824161b83fc09800cca7a65007bf2949c86f9463\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="2520dd452fb1f487eba29ccd2d44358f0b8da788">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_29faa7910542dbcb58cc1b208a548770975189f9\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\7e02780b6434676a9f91361e55a2467d68c833df\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="8602ab07133e6ee182726fa27588420dba9d6d55">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ed823b1dac7d2e2c0ab4f6b826befb4149b0638d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\087beb9e342f34acdb11dc2acc097e634127df96\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="f7b86f1beb2b3625c6a1a5da6b5fc5294b64aea9">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_46270d823fa95c5dddf2b4d3aaee47cf2aee9ef5\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\7e80d2659ee743340872ad084a106c4818e300e4\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="df90236d5329058ebd0d5f1b2c7db79349186bb5">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e0c50069357aa9162dffe09b54f89827c1d66180\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\ffbc452d8eaaa96527ed9c403cce182bff309d81\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="5753660caa486676aacf05857930d76589a09af9">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_81584cc9e6897fb8f6f8e22beaa6c53810cff681\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.gradle\caches\modules-2\files-2.1\com.android.support\support-annotations\26.0.0\db09a97f4f0db8892c1a0111a4b966f97920d082\support-annotations-26.0.0.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="db09a97f4f0db8892c1a0111a4b966f97920d082">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\support-annotations-26.0.0_69c6e3f24edcef05ac29e5423d917788e1a5526f\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\e2303e5f5489d567b696ab8f020ebd94a74b1c36\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="49743d94bd8f62b64049c3e3065c18598ce2ca7f">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_e934c26b755e2d01449b4affc2ae2be4b0fc13ef\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\a265694ef373b4c53f64cf73e840d29808ab0d29\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="13bc23be353f868b74b6d30dd77c98d8c643e93d">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_87c258ea63de66bebfeefdb908e738731323334d\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\881adb2856dcf07e66c2ab4c56262fa18c05beb7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="78ea232052df889856dcb7b7b542707c89bb3bfb">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_00eec17b210063d891be10f1891aa2755a8d2a41\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\81565beffdc273971f3d649d3d4145cbf2be33bf\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="eb366c8b72908e2afa66c66b0a3f1318265a473e">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_65c99c1788357aabd4bc5df5fbf75deeffcaca3b\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\ac8ddf6fdfe9b6883af275458a9ac741701ef0af\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="453427e529ccd47ef859c7d739a59ab32f7f14ee">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_318ffbec604c6e1b23adf20fd911100bdd158085\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3be78ebc2706b2e1fe2f12d5726887a92d6c183b">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run_6591318fcfb603479bcf090d23a88506848df3f2\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\54e9466bf643f320f4b4c7dd462ef71b94268ecb\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="cbb26a4f659b17abc1f75ff735a607aa299697ac">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ad198752f085db54bf7790d1a7657ca5d0784d71\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\6fee908a226d621a889b87575e33ebb6fb37eebf\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="1a94a06ec585c9423a3c03bde1f7bf9268f83d66">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_10c63e78df40e85eac4f8bbc506ad2b4c477ed1e\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\9c40a260aa5cc18c88362ff45291b85030144151\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="a8655e6077da9526c0c94bf063f1275430ce8574">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_ac4adc6a1f4e5606003cf65e1e90ca2263eef952\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\1177e44799f18085d111d373d5743a28694deed7\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="4419abd361932fe84800422dd6f86adb912394e6">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_cdd65de3dd9dc314a6cc36990fdeaf5b0be40cc7\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="3833c054ff3655a4bb9b73084943326c21a6870f">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10000\instant-run-bootstrap_78f211dee4d83d160dc211d291483b8d3da00988\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\540a4ff29ce0b276410af600be234e96aa21e35d\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="6fdbd1bd6503815f2cef20a9a137005e5953aad1">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_a33ce01bbef9a0fd2ac57aba304a64ceb5f835c6\classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="C:\Users\TheBigE\.android\build-cache\f500690f12d07155f366ecc88a2059cea9dcf70f\output\jars\classes.jar"
+        jumboMode="true"
+        optimize="true"
+        revision="26.0.0"
+        sha1="d30ac0c26495d7264529e333cec806eec64dd6f3">
+        <dex dex="C:\Users\TheBigE\AndroidStudioProjects\SAM\app\build\intermediates\transforms\dex\debug\folders\1000\10\classes_bf5d5a3b1abd77506dd1d92fee84a651fbb0ddb5\classes.dex" />
+    </item>
+
+</items>
