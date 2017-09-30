@@ -1,6 +1,8 @@
 package sam.com.sam;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -32,6 +34,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.Arrays;
 
 import static sam.com.sam.R.id.map;
+import static sam.com.sam.R.id.start;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
@@ -40,19 +43,24 @@ public class MainActivity extends AppCompatActivity
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
 
-    FirebaseAuth firebaseAuth;
-    FirebaseAuth.AuthStateListener authStateListener;
+    private FirebaseAuth firebaseAuth;
+    private FirebaseAuth.AuthStateListener authStateListener;
     int RC_SIGN_IN = 1;
 
-    TextView textViewName;
-    TextView textViewEMail;
+    private TextView textViewName;
+    private TextView textViewEMail;
 
-    GoogleMap googleMap;
+    private GoogleMap googleMap;
+
+    private SharedPreferences sharedPreferences;
+    private final String TAG = "sam.com.sam.firstLogIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        sharedPreferences = getSharedPreferences(TAG, Activity.MODE_PRIVATE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
@@ -122,6 +130,12 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null);
                 databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
+
+                if (sharedPreferences.getBoolean("isFirstLogIn", true)) {
+                    Intent intent =  new Intent(this, STest.class);
+                    startActivity(intent);
+                    //TODO: change isFirstLogIn preference
+                }
 
                 textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
                 textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
