@@ -47,7 +47,7 @@ public class SpokenLanguagesAdapter extends RecyclerView.Adapter<SpokenLanguages
 
         public SpokenViewHolder(View itemView) {
             super(itemView);
-            languageTv = (TextView) itemView.findViewById(R.id.language_tv);
+            languageTv = (TextView) itemView.findViewById(R.id.checkbox/*language_tv*/);
         }
     }
 }

@@ -47,7 +47,7 @@ public class LearnLanguagesAdapter extends RecyclerView.Adapter<LearnLanguagesAd
 
         public LearnViewHolder(View itemView) {
             super(itemView);
-            languageTv = (TextView) itemView.findViewById(R.id.language_tv);
+            languageTv = (TextView) itemView.findViewById(R.id.checkbox/*language_tv*/);
         }
     }
 }
