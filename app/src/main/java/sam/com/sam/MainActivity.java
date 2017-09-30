@@ -1,6 +1,7 @@
 package sam.com.sam;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -186,7 +187,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
-
+            sendEMail();
         } else if (id == R.id.item_lang) {
             Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
             startActivity(i);
@@ -214,5 +215,13 @@ public class MainActivity extends AppCompatActivity
         map.addMarker(new MarkerOptions()
                 .position(new LatLng(0, 0))
                 .title("Marker"));
+    }
+
+    private void sendEMail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","abc@gmail.com", null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+        startActivity(Intent.createChooser(intent, "Send email..."));
     }
 }
