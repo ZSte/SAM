@@ -18,6 +18,11 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
+import static sam.com.sam.R.id.map;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        OnMapReadyCallback{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -34,6 +42,11 @@ public class MainActivity extends AppCompatActivity
     FirebaseAuth firebaseAuth;
     FirebaseAuth.AuthStateListener authStateListener;
     int RC_SIGN_IN = 1;
+
+    TextView textViewName;
+    TextView textViewEMail;
+
+    GoogleMap googleMap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,13 +94,20 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        //Set Name in Drawer
-        TextView textViewName = (TextView) headerView.findViewById(R.id.textView_name);
-        textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
 
-        //Set E-Mail in Drawer
-        TextView textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
-        textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
+        textViewName = (TextView) headerView.findViewById(R.id.textView_name);
+        textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
+
+        /*if the App is restarted but a user is still logged in his name will be reset in the
+        navigation drawer*/
+        if (firebaseAuth.getCurrentUser() != null) {
+            textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
+            textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
+        }
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
     }
 
     public void isFirstStart() {
@@ -104,6 +124,9 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null);
                 databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
+
+                textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
+                textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
             } else if (resultCode == 0) {
                 //User was not signed in
 
@@ -182,13 +205,22 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick(View view) {
-        if(view.getId() == R.id.signout) {
+        /*if(view.getId() == R.id.signout) {
             Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
         }
-        else if(view.getId() == R.id.lang) {
+        else */if(view.getId() == R.id.lang) {
             Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
             startActivity(i);
         }
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        this.googleMap = map;
+
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
     }
 }
