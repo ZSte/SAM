@@ -88,6 +88,8 @@ public class MainActivity extends AppCompatActivity
         textViewName = (TextView) headerView.findViewById(R.id.textView_name);
         textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
 
+        /*if the App is restarted but a user is still logged in his name will be reset in the
+        navigation drawer*/
         if (firebaseAuth.getCurrentUser() != null) {
             textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
             textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
