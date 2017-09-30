@@ -11,6 +11,7 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -42,8 +43,10 @@ public class MainActivity extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
 
-        //Button signOut = (Button) findViewById(R.id.signout);
-        //signOut.setOnClickListener(this);
+        Button signOut = (Button) findViewById(R.id.signout);
+        Button lang = (Button) findViewById(R.id.lang);
+        signOut.setOnClickListener(this);
+        lang.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -93,7 +96,7 @@ public class MainActivity extends AppCompatActivity
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null);
-                databaseReference.push().setValue(u);
+                databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
             } else if (resultCode == 0) {
                 //User was not signed in
 
@@ -110,6 +113,14 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(authStateListener);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if(authStateListener != null) {
+            firebaseAuth.removeAuthStateListener(authStateListener);
+        }
     }
 
     @Override
@@ -170,8 +181,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick(View view) {
-        /*if(view.getId() == R.id.signout) {
+        if(view.getId() == R.id.signout) {
+            Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
-        }*/
+        }
     }
 }
