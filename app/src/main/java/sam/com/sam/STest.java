@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class STest extends AppCompatActivity {
@@ -129,11 +130,7 @@ public class STest extends AppCompatActivity {
                 RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.spoken_rv);
                 LinearLayoutManager llm = new LinearLayoutManager(container.getContext());
                 rv.setLayoutManager(llm);
-                List<String> test = new ArrayList<>();
-                test.add("A");
-                test.add("AA");
-                test.add("AAA");
-                test.add("AAAA");
+                List<String> test = Arrays.asList(getResources().getStringArray(R.array.languages));
                 SpokenLanguagesAdapter spokenLanguagesAdapter = new SpokenLanguagesAdapter(test);
                 rv.setAdapter(spokenLanguagesAdapter);
                 //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
@@ -145,11 +142,7 @@ public class STest extends AppCompatActivity {
                 RecyclerView rv = (RecyclerView) rootView.findViewById(R.id.learn_rv);
                 LinearLayoutManager llm = new LinearLayoutManager(container.getContext());
                 rv.setLayoutManager(llm);
-                List<String> test = new ArrayList<>();
-                test.add("A1");
-                test.add("AA");
-                test.add("AAA");
-                test.add("AAAA");
+                List<String> test = Arrays.asList(getResources().getStringArray(R.array.languages));
                 LearnLanguagesAdapter learnLanguagesAdapter = new LearnLanguagesAdapter(test);
                 rv.setAdapter(learnLanguagesAdapter);
                 //TextView textView = (TextView) rootView.findViewById(R.id.section_label);
