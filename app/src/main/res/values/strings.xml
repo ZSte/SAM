@@ -10,4 +10,18 @@
     <string name="spoken_lang">Spoken languages</string>
     <string name="learn_lang">Learn</string>
     <string name="section_format">Hello World from section: %1$d</string>
+
+    <string-array name="languages">
+        <item name="english">English</item>
+        <item name="german">German</item>
+        <item name="french">French</item>
+        <item name="chinese">Chinese</item>
+        <item name="hindi">Hindi</item>
+        <item name="arabic">Arabic</item>
+        <item name="russian">Russian</item>
+        <item name="portuguese">Portuguese</item>
+        <item name="bengali">Bengali</item>
+        <item name="japanese">Japanese</item>
+        <item name="korean">Korean</item>
+    </string-array>
 </resources>
