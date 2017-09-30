@@ -35,6 +35,9 @@ public class MainActivity extends AppCompatActivity
     FirebaseAuth.AuthStateListener authStateListener;
     int RC_SIGN_IN = 1;
 
+    TextView textViewName;
+    TextView textViewEMail;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,13 +84,14 @@ public class MainActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
         View headerView = navigationView.getHeaderView(0);
-        //Set Name in Drawer
-        TextView textViewName = (TextView) headerView.findViewById(R.id.textView_name);
-        textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
 
-        //Set E-Mail in Drawer
-        TextView textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
-        textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
+        textViewName = (TextView) headerView.findViewById(R.id.textView_name);
+        textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
+
+        if (firebaseAuth.getCurrentUser() != null) {
+            textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
+            textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
+        }
     }
 
     public void isFirstStart() {
@@ -104,6 +108,9 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null);
                 databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
+
+                textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
+                textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
             } else if (resultCode == 0) {
                 //User was not signed in
 
