@@ -191,9 +191,9 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void onClick(View view) {
-        if(view.getId() == R.id.signout) {
+        /*if(view.getId() == R.id.signout) {
             Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
-        }
+        }*/
     }
 }
