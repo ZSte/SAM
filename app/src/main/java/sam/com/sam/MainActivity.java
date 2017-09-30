@@ -18,6 +18,11 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
@@ -25,8 +30,11 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Arrays;
 
+import static sam.com.sam.R.id.map;
+
 public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener {
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        OnMapReadyCallback{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -94,6 +102,11 @@ public class MainActivity extends AppCompatActivity
             textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
             textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
         }
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
+
     }
 
     public void isFirstStart() {
@@ -195,5 +208,12 @@ public class MainActivity extends AppCompatActivity
             Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
         }*/
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        map.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));
     }
 }
