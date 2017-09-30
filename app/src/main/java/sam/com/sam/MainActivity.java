@@ -2,19 +2,17 @@ package sam.com.sam;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Button;
+import android.widget.HeaderViewListAdapter;
+import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,9 +39,6 @@ public class MainActivity extends AppCompatActivity
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
-
-        //Button signOut = (Button) findViewById(R.id.signout);
-        //signOut.setOnClickListener(this);
 
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
@@ -78,6 +73,15 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+        //Set Name in Drawer
+        TextView textViewName = (TextView) headerView.findViewById(R.id.textView_name);
+        textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
+
+        //Set E-Mail in Drawer
+        TextView textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
+        textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
     }
 
     public void isFirstStart() {
@@ -150,14 +154,8 @@ public class MainActivity extends AppCompatActivity
         // Handle navigation view item clicks here.
         int id = item.getItemId();
 
-        if (id == R.id.nav_camera) {
-            // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
-
-        } else if (id == R.id.nav_slideshow) {
-
-        } else if (id == R.id.nav_manage) {
-
+        if (id == R.id.log_out) {
+            signOut();
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
