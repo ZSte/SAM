@@ -24,4 +24,8 @@
         <item name="japanese">Japanese</item>
         <item name="korean">Korean</item>
     </string-array>
+
+    <string name="email_subject">LEARN WITH ME</string>
+    <string name="email_body">Hey there,\n\nI would like to meet up with you and train to speak "the
+        language".\n\nMfG</string>
 </resources>
