@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "586788517350",
+    "firebase_url": "https://samapp-d10c3.firebaseio.com",
+    "project_id": "samapp-d10c3",
+    "storage_bucket": "samapp-d10c3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586788517350:android:7f2eebc6e8fa1385",
+        "android_client_info": {
+          "package_name": "com.sam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586788517350-k8ts7rpeisou6q6v404j726gpj3orr3q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sam",
+            "certificate_hash": "f1bad54ced02062fb719940d412016ab6505a7f1"
+          }
+        },
+        {
+          "client_id": "586788517350-52ptq4af0lhukdklg90s6gqqbl97u98s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDm5CAchdd9moXizxs7YqhsArytSnhFYYA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586788517350-52ptq4af0lhukdklg90s6gqqbl97u98s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "539030633823",
+    "firebase_url": "https://appsam-c6bda.firebaseio.com",
+    "project_id": "appsam-c6bda",
+    "storage_bucket": "appsam-c6bda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:539030633823:android:f4b6f31d9fcd3628",
+        "android_client_info": {
+          "package_name": "sam.com.sam"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "539030633823-s28bp3bhvv4955kdk7blqi3o1e76ekhk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "sam.com.sam",
+            "certificate_hash": "f1bad54ced02062fb719940d412016ab6505a7f1"
+          }
+        },
+        {
+          "client_id": "539030633823-5uf0m8uh4d6ijemf9hpjikr0hg54h0gf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDlgfX_DUP9A32nn8ls2nnUYpT3F6T4JD8"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "539030633823-5uf0m8uh4d6ijemf9hpjikr0hg54h0gf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
