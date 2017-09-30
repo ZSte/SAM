@@ -21,6 +21,11 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDODIfOZtgr2UDh1Z0KJ_MWZsvIqlBJTmI" />
 
+        <activity android:name=".SetLanguagesActivity" />
+        <activity
+            android:name=".STest"
+            android:label="@string/title_activity_stest"
+            android:theme="@style/AppTheme.NoActionBar" />
     </application>
 
 </manifest>

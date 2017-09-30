@@ -186,5 +186,9 @@ public class MainActivity extends AppCompatActivity
             Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
         }
+        else if(view.getId() == R.id.lang) {
+            Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
+            startActivity(i);
+        }
     }
 }
