@@ -41,3 +41,5 @@ public class User {
         this.username = name;
     }
 }
+
+//Just a simple line
