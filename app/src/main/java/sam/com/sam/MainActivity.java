@@ -56,9 +56,6 @@ public class MainActivity extends AppCompatActivity
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
 
-        Button lang = (Button) findViewById(R.id.lang);
-        lang.setOnClickListener(this);
-
         firebaseAuth = FirebaseAuth.getInstance();
         authStateListener = new FirebaseAuth.AuthStateListener() {
             @Override
@@ -190,6 +187,9 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
 
+        } else if (id == R.id.item_lang) {
+            Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
+            startActivity(i);
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -202,10 +202,9 @@ public class MainActivity extends AppCompatActivity
             Log.e("CLICKED", "aaaaaaaaaaaaaa");
             signOut();
         }
-        else */if(view.getId() == R.id.lang) {
-            Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
-            startActivity(i);
-        }
+        else {
+
+        }*/
     }
 
     @Override
