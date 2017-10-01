@@ -17,9 +17,9 @@ public class MapManager {
 
     public static void addUserMarker(GoogleMap map, User user) {
         map.addMarker(new MarkerOptions()
-                .snippet("Skill-Level: " + user.getSkillLvl())
                 .position(user.getLocation())
-                .title(user.getUsername()));
+                .snippet(user.geteMailAdr())
+                .title(user.getUsername() + " -- Skill Level: " + user.getSkillLvl()));
     }
 
 

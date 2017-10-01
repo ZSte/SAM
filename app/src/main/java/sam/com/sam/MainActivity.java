@@ -30,6 +30,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
@@ -242,7 +243,15 @@ public class MainActivity extends AppCompatActivity
 
     private void sendEMail() {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","abc@gmail.com", null));
+                "mailto","", null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+        startActivity(Intent.createChooser(intent, "Send email..."));
+    }
+
+    private void sendEMailTo(String email) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null));
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
         startActivity(Intent.createChooser(intent, "Send email..."));
@@ -305,7 +314,7 @@ public class MainActivity extends AppCompatActivity
 
 
     @Override
-    public void onInfoWindowClick(Marker marker) {
+    public void onInfoWindowClick(final Marker marker) {
         /*Toast.makeText(this, "Info window clicked",
                 Toast.LENGTH_SHORT).show();*/
 
@@ -315,7 +324,7 @@ public class MainActivity extends AppCompatActivity
         builder.setPositiveButton("Send Mail", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
-                sendEMail();
+                sendEMailTo(marker.getSnippet());
             }
         });
         builder.show();
