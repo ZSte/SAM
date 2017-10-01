@@ -1,5 +1,6 @@
 package sam.com.sam;
 
+import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -63,5 +64,7 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("hindi");
                 break;
         }
+        //set color for picked languages
+        view.setBackgroundColor(Color.RED);
     }
 }

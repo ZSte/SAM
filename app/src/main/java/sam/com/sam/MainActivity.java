@@ -311,13 +311,12 @@ public class MainActivity extends AppCompatActivity
                     userList.add(user);
                     //userList.add(dataSnapshot.getValue(User.class));
                     Log.e("AAAA1", user==null?"NULL": "AAAA");
-                    Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
+                    //Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
 
                     Log.e("GOOGLE", googleMap == null?"NULL":"AAAA");
 
                     //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
                     MapManager.addUserMarker(googleMap, user);
-                    onMapReady(googleMap);
                 }
 
                 @Override
