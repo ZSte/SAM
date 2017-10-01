@@ -1,6 +1,7 @@
 package sam.com.sam;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -71,5 +72,6 @@ public class SetSpokenActivity extends AppCompatActivity implements AdapterView.
                 databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("hindi");
                 break;
         }
+        view.setBackgroundColor(Color.RED);
     }
 }
