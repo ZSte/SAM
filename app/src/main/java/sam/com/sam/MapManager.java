@@ -19,7 +19,7 @@ public class MapManager {
 
     public static void addUserMarker(GoogleMap map, User user) {
         if(user.getLat() == null || user.getLng() == null) {
-        //    Log.e("NULL", "1");
+            Log.e("NULL", "1");
             return;
         }
         Log.e("NOTNULL", "");
