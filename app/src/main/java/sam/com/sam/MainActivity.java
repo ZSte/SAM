@@ -21,6 +21,7 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     int RC_SIGN_IN = 1;
+    int PLACE_PICKER_REQUEST = 2;
     private ChildEventListener childEventListener;
 
     private TextView textViewName;
@@ -124,9 +126,10 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
+                Log.e("AAAA", "LOGIN");
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, 10, 10);
+                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, null, null);
                 databaseReference.child(firebaseUser.getUid()).setValue(u);
 
                 textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
@@ -134,6 +137,16 @@ public class MainActivity extends AppCompatActivity
             } else if (resultCode == 0) {
                 //User was not signed in
 
+            }
+        }
+        else if(requestCode == PLACE_PICKER_REQUEST) {
+            if(resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                LatLng location = place.getLatLng();
+                databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/latitude").setValue(location.latitude);
+                databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/longitude").setValue(location.longitude);
+                firebaseAddChildEventListener();
+                MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
             }
         }
 
@@ -147,6 +160,10 @@ public class MainActivity extends AppCompatActivity
     protected void onResume() {
         super.onResume();
         firebaseAuth.addAuthStateListener(authStateListener);
+        if(googleMap != null) {
+            googleMap.clear();
+            firebaseAddChildEventListener();
+        }
     }
 
     @Override
@@ -242,7 +259,6 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void chooseLocation() {
-        int PLACE_PICKER_REQUEST = 1;
         PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
 
         try {
@@ -264,7 +280,7 @@ public class MainActivity extends AppCompatActivity
                     userList.add(user);
                     //userList.add(dataSnapshot.getValue(User.class));
                     Log.e("AAAA1", user==null?"NULL": "AAAA");
-                    Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
+                    //Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
 
                     Log.e("GOOGLE", googleMap == null?"NULL":"AAAA");
 
@@ -274,7 +290,18 @@ public class MainActivity extends AppCompatActivity
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+                    Log.e("CHANGED", "");
+                    User user = dataSnapshot.getValue(User.class);
+                    userList.add(user);
+                    //userList.add(dataSnapshot.getValue(User.class));
+                    Log.e("AAAA1", user==null?"NULL": "AAAA");
+                    Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
 
+                    Log.e("GOOGLE", googleMap == null?"NULL":"AAAA");
+
+                    //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
+                    MapManager.addUserMarker(googleMap, user);
+                    onMapReady(googleMap);
                 }
 
                 @Override

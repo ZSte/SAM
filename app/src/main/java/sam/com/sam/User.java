@@ -23,14 +23,14 @@ public class User {
     private List<String> learningLanguages;
 
     //private LatLng location;
-    private int lat;
-    private int lng;
+    private Double lat;
+    private Double lng;
 
 
     /**
      * Constructor of the User Class
      */
-    public User(String name, int skill, String eMail, List<String> spokenLanguages, List<String> learningLanguages, int lat, int lng) {
+    public User(String name, int skill, String eMail, List<String> spokenLanguages, List<String> learningLanguages, Double lat, Double lng) {
         this.username = name;
         this.skillLvl = skill;
         this.eMailAdr = eMail;
@@ -65,6 +65,14 @@ public class User {
 
     public LatLng getLocation() {
         return new LatLng(lat, lng);
+    }
+
+    public Double getLat() {
+        return lat;
+    }
+
+    public Double getLng() {
+        return lng;
     }
 
     public void setUsername(String name) {

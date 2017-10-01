@@ -1,5 +1,7 @@
 package sam.com.sam;
 
+import android.util.Log;
+
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.model.MarkerOptions;
 
@@ -16,6 +18,12 @@ public class MapManager {
 
 
     public static void addUserMarker(GoogleMap map, User user) {
+        if(user.getLat() == null || user.getLng() == null) {
+        //    Log.e("NULL", "1");
+            return;
+        }
+        Log.e("NOTNULL", "");
+        //aaaa
         map.addMarker(new MarkerOptions()
                 .snippet("Skill-Level: " + user.getSkillLvl())
                 .position(user.getLocation())
