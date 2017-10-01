@@ -59,15 +59,10 @@ public class MainActivity extends AppCompatActivity
 
     private GoogleMap googleMap;
 
-    private SharedPreferences sharedPreferences;
-    public static final String TAG = "sam.com.sam.firstLogIn";
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        sharedPreferences = getSharedPreferences(TAG, Activity.MODE_PRIVATE);
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
@@ -132,13 +127,7 @@ public class MainActivity extends AppCompatActivity
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, 10, 10);
-                databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
-
-                if (sharedPreferences.getBoolean("isFirstLogIn", true)) {
-                    Intent intent =  new Intent(this, SetSpokenActivity.class);
-                    startActivity(intent);
-                    //TODO: change isFirstLogIn preference
-                }
+                databaseReference.child(firebaseUser.getUid()).setValue(u);
 
                 textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
                 textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());

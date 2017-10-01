@@ -19,8 +19,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class SetSpokenActivity extends AppCompatActivity implements AdapterView.OnItemClickListener,
-        View.OnClickListener{
+public class SetSpokenActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -50,9 +49,6 @@ public class SetSpokenActivity extends AppCompatActivity implements AdapterView.
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
-
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab_check);
-        fab.setOnClickListener(this);
     }
 
     @Override
@@ -74,17 +70,6 @@ public class SetSpokenActivity extends AppCompatActivity implements AdapterView.
             case 4:
                 databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("hindi");
                 break;
-        }
-    }
-
-    @Override
-    public void onClick(View view) {
-        if (getSharedPreferences(MainActivity.TAG, MODE_PRIVATE).getBoolean("isFirstLogIn", true)) {
-            Intent intent = new Intent(this, SetLearnActivity.class);
-            startActivity(intent);
-        } else {
-            Intent intent = new Intent(this, MainActivity.class);
-            startActivity(intent);
         }
     }
 }
