@@ -4,6 +4,8 @@ package sam.com.sam;
  * Created by TheBigE on 30.09.2017.
  */
 
+import com.google.android.gms.maps.model.LatLng;
+
 import java.util.List;
 
 /**
@@ -19,6 +21,8 @@ public class User {
 
     private List<String> spokenLanguages;
     private List<String> learningLanguages;
+
+    private LatLng location;
 
 
     /**
@@ -50,6 +54,10 @@ public class User {
 
     public String geteMailAdr() {
         return eMailAdr;
+    }
+
+    public LatLng getLocation() {
+        return location;
     }
 
     public void setUsername(String name) {
