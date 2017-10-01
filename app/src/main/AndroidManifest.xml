@@ -30,12 +30,14 @@
         -->
         <activity
             android:name=".SetSpokenActivity"
-            android:label="Learning"
+            android:label="Speaking"
             android:theme="@style/Theme.AppCompat" />
         <activity
             android:name=".SetLearnActivity"
-            android:label="Speacking" />
-        <activity android:name=".MainActivity" />
+            android:label="Learning"
+            android:theme="@style/Theme.AppCompat"/>
+
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>
