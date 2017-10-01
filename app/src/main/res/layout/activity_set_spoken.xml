@@ -10,6 +10,14 @@
     <ListView
         android:id="@+id/spoken_list_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"></ListView>
+        android:layout_height="wrap_content">
+
+        <android.support.design.widget.FloatingActionButton
+            android:id="@+id/fab_check"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_a"/>
+
+    </ListView>
 
 </LinearLayout>

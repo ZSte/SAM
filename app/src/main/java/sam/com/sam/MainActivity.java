@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity
     private GoogleMap googleMap;
 
     private SharedPreferences sharedPreferences;
-    private final String TAG = "sam.com.sam.firstLogIn";
+    public static final String TAG = "sam.com.sam.firstLogIn";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
