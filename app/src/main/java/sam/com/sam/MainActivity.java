@@ -79,6 +79,7 @@ public class MainActivity extends AppCompatActivity
                 FirebaseUser user = firebaseAuth.getCurrentUser();
                 if(user != null) {
                     //User is signed in
+                    firebaseAddChildEventListener();
                 }
                 else {
                     //User is not signed in
@@ -122,11 +123,6 @@ public class MainActivity extends AppCompatActivity
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
     }
-
-    public void isFirstStart() {
-        
-    }
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -276,7 +272,9 @@ public class MainActivity extends AppCompatActivity
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     User user = dataSnapshot.getValue(User.class);
                     userList.add(dataSnapshot.getValue(User.class));
-                    MapManager.addUserMarker(googleMap, user);
+
+                    //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
+                    MapManager.addUserMarker(googleMap, user, new LatLng(10, 10));
                 }
 
                 @Override

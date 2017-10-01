@@ -1,6 +1,7 @@
 package sam.com.sam;
 
 import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import java.util.Iterator;
@@ -15,10 +16,10 @@ public class MapManager {
     private MapManager() {}
 
 
-    public static void addUserMarker(GoogleMap map, User user) {
+    public static void addUserMarker(GoogleMap map, User user, LatLng location) {
         map.addMarker(new MarkerOptions()
                 .snippet("Skill-Level: " + user.getSkillLvl())
-                .position(user.getLocation())
+                .position(/*user.getLocation()*/location)
                 .title(user.getUsername()));
     }
 
@@ -27,7 +28,7 @@ public class MapManager {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User user = iterator.next();
-            addUserMarker(map, user);
+            addUserMarker(map, user, user.getLocation());
         }
     }
 
