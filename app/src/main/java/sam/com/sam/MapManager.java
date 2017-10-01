@@ -15,7 +15,7 @@ public class MapManager {
     private MapManager() {}
 
 
-    public void addUserMarker(GoogleMap map, User user) {
+    public static void addUserMarker(GoogleMap map, User user) {
         map.addMarker(new MarkerOptions()
                 .snippet("Skill-Level: " + user.getSkillLvl())
                 .position(user.getLocation())
@@ -23,7 +23,7 @@ public class MapManager {
     }
 
 
-    public void addUserMarker(GoogleMap map, List<User> users) {
+    public static void addUserMarker(GoogleMap map, List<User> users) {
         Iterator<User> iterator = users.iterator();
         while (iterator.hasNext()) {
             User user = iterator.next();

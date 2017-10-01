@@ -29,10 +29,15 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import static sam.com.sam.R.id.map;
 import static sam.com.sam.R.id.start;
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity
     private FirebaseAuth firebaseAuth;
     private FirebaseAuth.AuthStateListener authStateListener;
     int RC_SIGN_IN = 1;
+    private ChildEventListener childEventListener;
 
     private TextView textViewName;
     private TextView textViewEMail;
@@ -129,11 +135,11 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null);
+                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, new LatLng(10, 10));
                 databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
 
                 if (sharedPreferences.getBoolean("isFirstLogIn", true)) {
-                    Intent intent =  new Intent(this, STest.class);
+                    Intent intent =  new Intent(this, SetSpokenActivity.class);
                     startActivity(intent);
                     //TODO: change isFirstLogIn preference
                 }
@@ -163,6 +169,10 @@ public class MainActivity extends AppCompatActivity
         super.onPause();
         if(authStateListener != null) {
             firebaseAuth.removeAuthStateListener(authStateListener);
+        }
+        if(childEventListener != null) {
+            databaseReference.removeEventListener(childEventListener);
+            childEventListener = null;
         }
     }
 
@@ -203,9 +213,14 @@ public class MainActivity extends AppCompatActivity
 
         } else if (id == R.id.nav_send) {
             sendEMail();
-        } else if (id == R.id.item_lang) {
+        } else if (id == R.id.item_lang_spoken) {
             Intent i = new Intent(this, SetSpokenActivity.class/*STest.classSetLanguagesActivity.class*/);
             startActivity(i);
+        } else if (id == R.id.item_lang_learn) {
+            Intent i = new Intent(this, SetLearnActivity.class);
+            startActivity(i);
+        } else if (id == R.id.place_pick) {
+            chooseLocation();
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -249,5 +264,44 @@ public class MainActivity extends AppCompatActivity
         }
         catch(Exception e) {
             e.printStackTrace();
-        }}
+        }
+    }
+
+    public void firebaseAddChildEventListener() {
+        if(childEventListener == null) {
+            final List<User> userList = new ArrayList<>();
+
+            childEventListener = new ChildEventListener() {
+                @Override
+                public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                    User user = dataSnapshot.getValue(User.class);
+                    userList.add(dataSnapshot.getValue(User.class));
+                    MapManager.addUserMarker(googleMap, user);
+                }
+
+                @Override
+                public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+                }
+
+                @Override
+                public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            };
+            databaseReference.addChildEventListener(childEventListener);
+        }
+    }
+
+
 }

@@ -4,9 +4,15 @@
     <item android:title="Language Settings" >
         <menu>
             <item
-                android:id="@+id/item_lang"
+                android:id="@+id/item_lang_spoken"
                 android:icon="@mipmap/ic_language"
+                android:title="Language Select - S" />
+            <item
+                android:id="@+id/item_lang_learn"
                 android:title="Language Select" />
+            <item
+                android:id="@+id/place_pick"
+                android:title="Pick location" />
         </menu>
     </item>
 

@@ -28,12 +28,13 @@ public class User {
     /**
      * Constructor of the User Class
      */
-    public User(String name, int skill, String eMail, List<String> spokenLanguages, List<String> learningLanguages) {
+    public User(String name, int skill, String eMail, List<String> spokenLanguages, List<String> learningLanguages, LatLng location) {
         this.username = name;
         this.skillLvl = skill;
         this.eMailAdr = eMail;
         this.spokenLanguages = spokenLanguages;
         this.learningLanguages = learningLanguages;
+        this.location = location;
     }
 
     public String getUsername() {
