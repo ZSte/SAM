@@ -1,6 +1,7 @@
 package sam.com.sam;
 
 import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,7 +17,9 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class SetLearnActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
 
@@ -24,6 +27,8 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
     private DatabaseReference databaseReference;
 
     private FirebaseAuth firebaseAuth;
+
+    private Boolean[] choosen;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,12 +50,10 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
     }
 
     @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-        FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
         switch(i) {
             case 0:
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("english");
-
                 break;
             case 1:
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("german");
@@ -65,8 +68,7 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("hindi");
                 break;
         }
-        //set color for picked languages
-        view.setBackgroundColor(Color.RED);
+
     }
 
 

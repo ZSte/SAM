@@ -35,7 +35,7 @@
         <activity
             android:name=".SetLearnActivity"
             android:label="Speacking" />
-        <activity android:name=".MainActivity"></activity>
+        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>
