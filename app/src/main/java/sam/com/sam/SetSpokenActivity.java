@@ -71,6 +71,21 @@ public class SetSpokenActivity extends AppCompatActivity implements AdapterView.
             case 4:
                 databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("hindi");
                 break;
+            case 5:
+                databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("arabic");
+                break;
+            case 6:
+                databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("russian");
+                break;
+            case 7:
+                databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("portuguese");
+                break;
+            case 8:
+                databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("japanese");
+                break;
+            case 9:
+                databaseReference.child(firebaseUser.getUid() + "/spoken/" + Integer.toString(i)).setValue("korean");
+                break;
         }
         view.setBackgroundColor(Color.RED);
     }

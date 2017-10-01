@@ -138,7 +138,7 @@ public class MainActivity extends AppCompatActivity
                 Log.e("AAAA", "LOGIN");
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, 0.0/*null*/, 0.0/*null*/);
+                User u = new User(firebaseUser.getDisplayName(), 1, firebaseUser.getEmail(), null, null, 0.0/*null*/, 0.0/*null*/);
                 databaseReference.child(firebaseUser.getUid()).setValue(u);
 
                 textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
@@ -157,7 +157,7 @@ public class MainActivity extends AppCompatActivity
                 //databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/longitude").setValue(location.longitude);
                 databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location").setValue(location);
                 //firebaseAddChildEventListener();
-                //MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
+                //MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), 1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
             }
         }
 
