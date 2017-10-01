@@ -25,9 +25,9 @@ public class MapManager {
         Log.e("NOTNULL", "");
         //aaaa
         map.addMarker(new MarkerOptions()
-                .snippet("Skill-Level: " + user.getSkillLvl())
                 .position(user.getLocation())
-                .title(user.getUsername()));
+                .snippet(user.geteMailAdr())
+                .title(user.getUsername() + " -- Skill Level: " + user.getSkillLvl()));
     }
 
 

@@ -1,6 +1,8 @@
 package sam.com.sam;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,6 +11,7 @@ import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
@@ -19,6 +22,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.location.places.Place;
@@ -27,6 +31,8 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -45,7 +51,7 @@ import static sam.com.sam.R.id.start;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        OnMapReadyCallback{
+        OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -248,11 +254,21 @@ public class MainActivity extends AppCompatActivity
                 .position(new LatLng(0, 0))
                 .title("Marker"));*/
         firebaseAddChildEventListener();
+
+        googleMap.setOnInfoWindowClickListener(this);
     }
 
     private void sendEMail() {
         Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                "mailto","abc@gmail.com", null));
+                "mailto","", null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+        startActivity(Intent.createChooser(intent, "Send email..."));
+    }
+
+    private void sendEMailTo(String email) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null));
         intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
         startActivity(Intent.createChooser(intent, "Send email..."));
@@ -324,4 +340,20 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onInfoWindowClick(final Marker marker) {
+        /*Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();*/
+
+        Log.e("do", "it");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Contact");
+        builder.setPositiveButton("Send Mail", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sendEMailTo(marker.getSnippet());
+            }
+        });
+        builder.show();
+    }
 }
