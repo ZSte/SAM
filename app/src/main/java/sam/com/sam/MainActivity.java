@@ -235,8 +235,4 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
         startActivity(Intent.createChooser(intent, "Send email..."));
     }
-
-    public Context getContext() {
-        return this;
-    }
 }
