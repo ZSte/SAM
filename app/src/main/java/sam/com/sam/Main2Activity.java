@@ -213,9 +213,12 @@ public class Main2Activity extends AppCompatActivity
                 Place place = PlacePicker.getPlace(data, this);
                 LatLng location = place.getLatLng();
                 Log.e("LAT", location.latitude + "");
+                User u = new User(mFirebaseAuth.getCurrentUser().getDisplayName(), -1, mFirebaseAuth.getCurrentUser().getEmail(),
+                        null, null, location.latitude, location.longitude);
                 //databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/latitude").setValue(location.latitude);
                 //databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/longitude").setValue(location.longitude);
-                mMessagesDatabaseReference.child(mFirebaseAuth.getCurrentUser().getUid() + "/location").setValue(location);
+                //mMessagesDatabaseReference.child(mFirebaseAuth.getCurrentUser().getUid() + "/location").setValue(location);
+                mMessagesDatabaseReference.child(mFirebaseAuth.getCurrentUser().getUid()).setValue(u);
                 //firebaseAddChildEventListener();
                 //MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
             }
