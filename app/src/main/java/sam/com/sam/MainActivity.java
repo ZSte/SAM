@@ -21,6 +21,7 @@ import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
@@ -238,4 +239,15 @@ public class MainActivity extends AppCompatActivity
         intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
         startActivity(Intent.createChooser(intent, "Send email..."));
     }
+
+    public void chooseLocation() {
+        int PLACE_PICKER_REQUEST = 1;
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), PLACE_PICKER_REQUEST);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }}
 }
