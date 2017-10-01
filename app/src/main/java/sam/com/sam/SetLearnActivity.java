@@ -49,6 +49,7 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
         switch(i) {
             case 0:
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("english");
+
                 break;
             case 1:
                 databaseReference.child(firebaseUser.getUid() + "/learn/" + Integer.toString(i)).setValue("german");
@@ -64,4 +65,6 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
                 break;
         }
     }
+
+
 }
