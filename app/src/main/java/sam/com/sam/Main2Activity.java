@@ -30,10 +30,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.location.places.Place;
 import com.google.android.gms.location.places.ui.PlacePicker;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -206,6 +208,18 @@ public class Main2Activity extends AppCompatActivity
                 finish();
             }
         }
+        else if(requestCode == 2) {
+            if(resultCode == RESULT_OK) {
+                Place place = PlacePicker.getPlace(data, this);
+                LatLng location = place.getLatLng();
+                Log.e("LAT", location.latitude + "");
+                //databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/latitude").setValue(location.latitude);
+                //databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/longitude").setValue(location.longitude);
+                mMessagesDatabaseReference.child(mFirebaseAuth.getCurrentUser().getUid() + "/location").setValue(location);
+                //firebaseAddChildEventListener();
+                //MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
+            }
+        }
     }
 
     public void signOut() {
@@ -229,8 +243,15 @@ public class Main2Activity extends AppCompatActivity
                     //Log.e("LIST", list.toString());
                     //mMessageAdapter.add(friendlyMessage);
                     //locationTv.setText(locationTv.getText() + "\n" + friendlyMessage.getLocation());
-                    MapManager.addUserMarker(googleMap, friendlyMessage);
+                    //MapManager.addUserMarker(googleMap, friendlyMessage);
+                    //User a = new User("a", -1, "aaaa", null, null, 0.0, 0.0);
+                    //User a1 = new User("a!", -1, "aaa", null, null, 10.0, 10.0);
+
+                    //List<User> list = new ArrayList<>();
+                    //list.add(a);
+                    //list.add(a1);
                     list.add(friendlyMessage);
+                    MapManager.addUserMarker(googleMap, list);
                 }
 
                 @Override
