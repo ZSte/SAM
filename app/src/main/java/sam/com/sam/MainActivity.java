@@ -19,6 +19,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.HeaderViewListAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.location.places.ui.PlacePicker;
@@ -26,6 +27,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -44,7 +46,7 @@ import static sam.com.sam.R.id.start;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
-        OnMapReadyCallback{
+        OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener{
 
     private FirebaseDatabase firebaseDatabase;
     private DatabaseReference databaseReference;
@@ -231,6 +233,8 @@ public class MainActivity extends AppCompatActivity
                 .position(new LatLng(0, 0))
                 .title("Marker"));*/
         firebaseAddChildEventListener();
+
+        googleMap.setOnInfoWindowClickListener(this);
     }
 
     private void sendEMail() {
@@ -297,4 +301,10 @@ public class MainActivity extends AppCompatActivity
     }
 
 
+    @Override
+    public void onInfoWindowClick(Marker marker) {
+        Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();
+
+    }
 }
