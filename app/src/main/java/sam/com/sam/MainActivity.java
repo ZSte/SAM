@@ -131,7 +131,7 @@ public class MainActivity extends AppCompatActivity
             if (resultCode == RESULT_OK) {
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
-                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, new LatLng(10, 10));
+                User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, 10, 10);
                 databaseReference.child(firebaseUser.getUid())/*push()*/.setValue(u);
 
                 if (sharedPreferences.getBoolean("isFirstLogIn", true)) {
@@ -274,7 +274,7 @@ public class MainActivity extends AppCompatActivity
                     userList.add(dataSnapshot.getValue(User.class));
 
                     //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
-                    MapManager.addUserMarker(googleMap, user, new LatLng(10, 10));
+                    MapManager.addUserMarker(googleMap, user);
                 }
 
                 @Override
