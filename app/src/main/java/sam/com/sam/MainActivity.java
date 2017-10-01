@@ -189,7 +189,7 @@ public class MainActivity extends AppCompatActivity
         } else if (id == R.id.nav_send) {
             sendEMail();
         } else if (id == R.id.item_lang) {
-            Intent i = new Intent(this, STest.class/*SetLanguagesActivity.class*/);
+            Intent i = new Intent(this, SetSpokenActivity.class/*STest.classSetLanguagesActivity.class*/);
             startActivity(i);
         }
 

@@ -26,6 +26,8 @@
             android:name=".STest"
             android:label="@string/title_activity_stest"
             android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".SetSpokenActivity" />
+        <activity android:name=".SetLearnActivity"></activity>
     </application>
 
 </manifest>
