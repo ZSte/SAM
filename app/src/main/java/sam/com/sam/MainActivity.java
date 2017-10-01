@@ -238,9 +238,10 @@ public class MainActivity extends AppCompatActivity
     public void onMapReady(GoogleMap map) {
         this.googleMap = map;
 
-        map.addMarker(new MarkerOptions()
+        /*map.addMarker(new MarkerOptions()
                 .position(new LatLng(0, 0))
-                .title("Marker"));
+                .title("Marker"));*/
+        firebaseAddChildEventListener();
     }
 
     private void sendEMail() {
@@ -271,7 +272,12 @@ public class MainActivity extends AppCompatActivity
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     User user = dataSnapshot.getValue(User.class);
-                    userList.add(dataSnapshot.getValue(User.class));
+                    userList.add(user);
+                    //userList.add(dataSnapshot.getValue(User.class));
+                    Log.e("AAAA1", user==null?"NULL": "AAAA");
+                    Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
+
+                    Log.e("GOOGLE", googleMap == null?"NULL":"AAAA");
 
                     //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
                     MapManager.addUserMarker(googleMap, user);

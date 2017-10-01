@@ -22,7 +22,7 @@ public class User {
     private List<String> spokenLanguages;
     private List<String> learningLanguages;
 
-    private LatLng location;
+    //private LatLng location;
     private int lat;
     private int lng;
 

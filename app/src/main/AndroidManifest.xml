@@ -21,13 +21,16 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyDODIfOZtgr2UDh1Z0KJ_MWZsvIqlBJTmI" />
 
-        <activity android:name=".SetLanguagesActivity" />
+        <!--<activity android:name=".SetLanguagesActivity" />
         <activity
             android:name=".STest"
             android:label="@string/title_activity_stest"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".SetSpokenActivity" />
-        <activity android:name=".SetLearnActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />-->
+        <activity android:name=".SetSpokenActivity"
+            android:label="Learning"
+            android:theme="@style/Theme.AppCompat" />
+        <activity android:name=".SetLearnActivity"
+            android:label="Speacking"></activity>
     </application>
 
 </manifest>
