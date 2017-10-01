@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -41,6 +42,7 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Transaction;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -67,10 +69,14 @@ public class MainActivity extends AppCompatActivity
 
     private GoogleMap googleMap;
 
+    private List<User> users;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        users = new ArrayList<User>();
 
         firebaseDatabase = FirebaseDatabase.getInstance();
         databaseReference = firebaseDatabase.getReference().child("users");
@@ -125,6 +131,23 @@ public class MainActivity extends AppCompatActivity
         MapFragment mapFragment = (MapFragment) getFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
+
+        /*runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                while(true) {
+                    for (User user : users
+                            ) {
+                        MapManager.addUserMarker(googleMap, user);
+                    }
+                    try {
+                        Thread.sleep(5000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });*/
     }
 
     @Override
@@ -132,11 +155,14 @@ public class MainActivity extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == RC_SIGN_IN) {
             if (resultCode == RESULT_OK) {
-                Log.e("AAAA", "LOGIN");
                 //User is succesfully signed in
                 FirebaseUser firebaseUser = firebaseAuth.getCurrentUser();
                 User u = new User(firebaseUser.getDisplayName(), -1, firebaseUser.getEmail(), null, null, null, null);
                 databaseReference.child(firebaseUser.getUid()).setValue(u);
+
+                if (!users.contains(u)) {
+                    users.add(u);
+                }
 
                 textViewName.setText(firebaseAuth.getCurrentUser().getDisplayName());
                 textViewEMail.setText(firebaseAuth.getCurrentUser().getEmail());
@@ -152,7 +178,13 @@ public class MainActivity extends AppCompatActivity
                 databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/latitude").setValue(location.latitude);
                 databaseReference.child(firebaseAuth.getCurrentUser().getUid() + "/location/longitude").setValue(location.longitude);
                 firebaseAddChildEventListener();
-                MapManager.addUserMarker(googleMap, new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude));
+
+                User user = new User(firebaseAuth.getCurrentUser().getDisplayName(), -1, firebaseAuth.getCurrentUser().getEmail(), null, null, /*firebaseAuth.getCurrentUser().getUid(),*/ location.longitude, location.latitude);
+                if (!users.contains(user)) {
+                    users.add(user);
+                }
+
+                MapManager.addUserMarker(googleMap, user);
             }
         }
 
@@ -287,13 +319,16 @@ public class MainActivity extends AppCompatActivity
 
     public void firebaseAddChildEventListener() {
         if(childEventListener == null) {
-            final List<User> userList = new ArrayList<>();
 
             childEventListener = new ChildEventListener() {
                 @Override
                 public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                     User user = dataSnapshot.getValue(User.class);
-                    userList.add(user);
+
+                    if (!users.contains(user)) {
+                        users.add(user);
+                    }
+
                     //userList.add(dataSnapshot.getValue(User.class));
                     Log.e("AAAA1", user==null?"NULL": "AAAA");
                     //Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");
@@ -302,13 +337,18 @@ public class MainActivity extends AppCompatActivity
 
                     //LatLng location = dataSnapshot.child(/*"users/" + */firebaseAuth.getCurrentUser().getUid() + "/location").getValue(LatLng.class);
                     MapManager.addUserMarker(googleMap, user);
+
+                    
                 }
 
                 @Override
                 public void onChildChanged(DataSnapshot dataSnapshot, String s) {
                     Log.e("CHANGED", "");
                     User user = dataSnapshot.getValue(User.class);
-                    userList.add(user);
+
+                    users.remove(user);
+                    users.add(user);
+
                     //userList.add(dataSnapshot.getValue(User.class));
                     Log.e("AAAA1", user==null?"NULL": "AAAA");
                     //Log.e("AAAA", user.getLocation()==null?"NULL": "AAAA");

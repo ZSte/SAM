@@ -86,6 +86,14 @@ public class User {
     public void setLearningLanguages(List<String> learningLanguages) {
         this.learningLanguages = learningLanguages;
     }
+
+    @Override
+    public boolean equals(Object other) {
+        if (other instanceof User) {
+            return ((User) other).geteMailAdr().equals(this.geteMailAdr());
+        }
+        return false;
+    }
 }
 
 //Just a simple line
