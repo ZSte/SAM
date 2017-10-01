@@ -6,10 +6,10 @@
             <item
                 android:id="@+id/item_lang_spoken"
                 android:icon="@mipmap/ic_language"
-                android:title="Language Select - S" />
+                android:title="Spoken Languages" />
             <item
                 android:id="@+id/item_lang_learn"
-                android:title="Language Select" />
+                android:title="Languages to learn" />
             <item
                 android:id="@+id/place_pick"
                 android:title="Pick location" />
