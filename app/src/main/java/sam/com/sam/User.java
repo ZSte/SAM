@@ -37,6 +37,9 @@ public class User {
         this.location = location;
     }
 
+    public User() {
+    }
+
     public String getUsername() {
         return username;
     }

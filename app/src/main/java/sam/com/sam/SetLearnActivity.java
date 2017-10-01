@@ -36,14 +36,8 @@ public class SetLearnActivity extends AppCompatActivity implements AdapterView.O
 
         ListView listView = (ListView) findViewById(R.id.learn_list_view);
         final String[] languages = getResources().getStringArray(R.array.languages);
-
-        Log.e("AAAA", languages[0]);
-
         List<String> list = Arrays.asList(languages);
-        /*for(int i = 0; i < list.size(); i++) {
-            list.add(languages[i]);
-        }*/
-        Log.e("AAAA", list.toString());
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, list);
         listView.setAdapter(adapter);
         listView.setOnItemClickListener(this);
