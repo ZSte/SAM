@@ -1,10 +1,18 @@
 package sam.com.sam;
 
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
@@ -23,6 +31,10 @@ import android.widget.Toast;
 
 import com.firebase.ui.auth.AuthUI;
 import com.google.android.gms.location.places.ui.PlacePicker;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapFragment;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.Marker;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -35,7 +47,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class Main2Activity extends AppCompatActivity {
+public class Main2Activity extends AppCompatActivity
+        implements NavigationView.OnNavigationItemSelectedListener, View.OnClickListener,
+        OnMapReadyCallback, GoogleMap.OnInfoWindowClickListener {
 
     private TextView locationTv;
 
@@ -48,18 +62,51 @@ public class Main2Activity extends AppCompatActivity {
     private FirebaseAuth.AuthStateListener mAuthStateListener;
     final int RC_SIGN_IN = 1;
 
+    private TextView textViewName;
+    private TextView textViewEMail;
+
+    private GoogleMap googleMap;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main2);
+        setContentView(R.layout.activity_main);
         mUsername = "ANONYMOUS";
 
-        locationTv = (TextView) findViewById(R.id.location_tv);
+        //locationTv = (TextView) findViewById(R.id.location_tv);
 
         mFirebaseDatabase = FirebaseDatabase.getInstance();
         mFirebaseAuth = FirebaseAuth.getInstance();
 
         mMessagesDatabaseReference = mFirebaseDatabase.getReference().child("users"/*"messages"*/);
+
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawer.setDrawerListener(toggle);
+        toggle.syncState();
+
+        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        navigationView.setNavigationItemSelectedListener(this);
+
+        View headerView = navigationView.getHeaderView(0);
+
+        textViewName = (TextView) headerView.findViewById(R.id.textView_name);
+        textViewEMail = (TextView) headerView.findViewById(R.id.textView_eMail);
+
+        /*if the App is restarted but a user is still logged in his name will be reset in the
+        navigation drawer*/
+        if (mFirebaseAuth.getCurrentUser() != null) {
+            textViewName.setText(mFirebaseAuth.getCurrentUser().getDisplayName());
+            textViewEMail.setText(mFirebaseAuth.getCurrentUser().getEmail());
+        }
+
+        MapFragment mapFragment = (MapFragment) getFragmentManager()
+                .findFragmentById(R.id.map);
+        mapFragment.getMapAsync(this);
 
         // Initialize references to views
         //mProgressBar = (ProgressBar) findViewById(R.id.progressBar);
@@ -161,6 +208,10 @@ public class Main2Activity extends AppCompatActivity {
         }
     }
 
+    public void signOut() {
+        AuthUI.getInstance().signOut(this);
+    }
+
     private void onSignedInInitialize(String displayName) {
         mUsername = displayName;
         attachDatabaseReadListener();
@@ -168,7 +219,7 @@ public class Main2Activity extends AppCompatActivity {
 
     private void attachDatabaseReadListener() {
         if(mChildEventListener == null) {
-            final List<String> list = new ArrayList<>();
+            final List<User> list = new ArrayList<>();
 
             mChildEventListener = new ChildEventListener() {
                 @Override
@@ -177,7 +228,9 @@ public class Main2Activity extends AppCompatActivity {
                     //list.add(dataSnapshot.child(/*messages*//*"name"*/).getValue(String.class));
                     //Log.e("LIST", list.toString());
                     //mMessageAdapter.add(friendlyMessage);
-                    locationTv.setText(locationTv.getText() + "\n" + friendlyMessage.getLocation());
+                    //locationTv.setText(locationTv.getText() + "\n" + friendlyMessage.getLocation());
+                    MapManager.addUserMarker(googleMap, friendlyMessage);
+                    list.add(friendlyMessage);
                 }
 
                 @Override
@@ -249,6 +302,119 @@ public class Main2Activity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         mFirebaseAuth.addAuthStateListener(mAuthStateListener);
+    }
+
+    @Override
+    public void onBackPressed() {
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        if (drawer.isDrawerOpen(GravityCompat.START)) {
+            drawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
+    }
+
+    @SuppressWarnings("StatementWithEmptyBody")
+    @Override
+    public boolean onNavigationItemSelected(MenuItem item) {
+        // Handle navigation view item clicks here.
+        int id = item.getItemId();
+
+        if (id == R.id.log_out) {
+            signOut();
+        } else if (id == R.id.nav_share) {
+
+        } else if (id == R.id.nav_send) {
+            sendEMail();
+        } else if (id == R.id.item_lang_spoken) {
+            Intent i = new Intent(this, SetSpokenActivity.class/*STest.classSetLanguagesActivity.class*/);
+            startActivity(i);
+        } else if (id == R.id.item_lang_learn) {
+            Intent i = new Intent(this, SetLearnActivity.class);
+            startActivity(i);
+        } else if (id == R.id.place_pick) {
+            chooseLocation();
+        }
+
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawer.closeDrawer(GravityCompat.START);
+        return true;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap map) {
+        this.googleMap = map;
+
+        /*map.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));*/
+        //firebaseAddChildEventListener();
+        attachDatabaseReadListener();
+
+        googleMap.setOnInfoWindowClickListener(this);
+    }
+
+    /*@Override
+    public void onMapReady(GoogleMap map) {
+        this.googleMap = map;*/
+
+        /*map.addMarker(new MarkerOptions()
+                .position(new LatLng(0, 0))
+                .title("Marker"));*/
+        //firebaseAddChildEventListener();
+        /*attachDatabaseReadListener();
+
+        googleMap.setOnInfoWindowClickListener(this);
+    }*/
+
+    private void sendEMail() {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto","", null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+        startActivity(Intent.createChooser(intent, "Send email..."));
+    }
+
+    private void sendEMailTo(String email) {
+        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                "mailto", email, null));
+        intent.putExtra(Intent.EXTRA_SUBJECT, getString(R.string.email_subject));
+        intent.putExtra(Intent.EXTRA_TEXT, getString(R.string.email_body));
+        startActivity(Intent.createChooser(intent, "Send email..."));
+    }
+
+    public void chooseLocation() {
+        PlacePicker.IntentBuilder builder = new PlacePicker.IntentBuilder();
+
+        try {
+            startActivityForResult(builder.build(this), 2);
+        }
+        catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @Override
+    public void onInfoWindowClick(final Marker marker) {
+        /*Toast.makeText(this, "Info window clicked",
+                Toast.LENGTH_SHORT).show();*/
+
+        Log.e("do", "it");
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("Contact");
+        builder.setPositiveButton("Send Mail", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                sendEMailTo(marker.getSnippet());
+            }
+        });
+        builder.show();
+    }
+
+    @Override
+    public void onClick(View view) {
+
     }
 
     //@Override
